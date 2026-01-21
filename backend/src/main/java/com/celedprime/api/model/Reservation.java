@@ -3,7 +3,7 @@ import com.celedprime.api.model.enums.ReservationStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity @Table(name = "reservations")
 @Getter @Setter
@@ -18,13 +18,10 @@ public class Reservation {
     private User user;
 
     @Column(nullable = false)
-    private LocalDateTime checkIn;
+    private LocalDate date;
 
     @Column(nullable = false)
-    private LocalDateTime checkOut;
-
-    @Column(nullable = false)
-    private LocalDateTime created;
+    private LocalDate created;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -35,7 +32,7 @@ public class Reservation {
 
     @PrePersist
     protected void onCreate() {
-        this.created = LocalDateTime.now();
+        this.created = LocalDate.now();
         if (this.status == null) {
             this.status = ReservationStatus.PENDING;
         }
