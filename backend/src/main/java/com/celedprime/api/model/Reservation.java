@@ -34,7 +34,7 @@ public class Reservation {
     protected void onCreate() {
         this.created = LocalDate.now();
         if (this.status == null) {
-            this.status = ReservationStatus.PENDING;
+            this.status = ReservationStatus.CONFIRMED;
         }
     }
 }

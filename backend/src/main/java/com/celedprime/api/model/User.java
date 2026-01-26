@@ -23,6 +23,8 @@ public class User {
     private UserRole role;
 
     @Column(length = 20, nullable = false, unique = true)
-    private Long phone;
+    private String phone;
 
+    @Column(length = 9, nullable = false)
+    private String password;
 }
