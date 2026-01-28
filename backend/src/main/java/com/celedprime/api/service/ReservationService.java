@@ -39,10 +39,14 @@ public class ReservationService {
         Reservation reserve = ReservationMapper.toEntity(request, user);
 
         this.repository.save(reserve);
-        return  ReservationMapper.toResponse(reserve);
+        return ReservationMapper.toResponse(reserve);
     }
 
 //    public ReservationResponseDTO editDate(Reservation)
+    public void deleteReservation(Long id) {
+        this.repository.deleteById(id);
+    }
+
     public List<ReservationResponseDTO> findAllByUser(Long userId) {
 
         User user = userService.findEntityById(userId);
