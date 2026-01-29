@@ -5,7 +5,10 @@ import com.celedprime.api.dto.ReservationResponseDTO;
 import com.celedprime.api.mapper.ReservationMapper;
 import com.celedprime.api.model.Reservation;
 import com.celedprime.api.model.User;
+import com.celedprime.api.model.enums.ReservationStatus;
 import com.celedprime.api.repository.ReservationRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import com.celedprime.api.exception.BusinessException;
 
@@ -42,11 +45,6 @@ public class ReservationService {
         return ReservationMapper.toResponse(reserve);
     }
 
-//    public ReservationResponseDTO editDate(Reservation)
-    public void deleteReservation(Long id) {
-        this.repository.deleteById(id);
-    }
-
     public List<ReservationResponseDTO> findAllByUser(Long userId) {
 
         User user = userService.findEntityById(userId);
@@ -60,4 +58,26 @@ public class ReservationService {
         return reserves;
     }
 
+    @Transactional
+    public void adminSoftDeleteReservation(Long id) {
+        Reservation reservation = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Reserva não encontrada: " + id));
+
+        reservation.setStatus(ReservationStatus.CANCELED);
+        repository.save(reservation);
+    }
+
+    public List<ReservationResponseDTO> findByMonth(int month, int year) {
+
+        LocalDate startDate = LocalDate.of(year, month, 1);
+        LocalDate endDate = startDate.with(java.time.temporal.TemporalAdjusters.lastDayOfMonth());
+
+        List<Reservation> reservations = repository.findByDateBetween(startDate, endDate);
+        List<ReservationResponseDTO> response = new ArrayList<>();
+
+        for(Reservation reserve: reservations) {
+            response.add(ReservationMapper.toResponse(reserve));
+        }
+        return response;
+    }
 }

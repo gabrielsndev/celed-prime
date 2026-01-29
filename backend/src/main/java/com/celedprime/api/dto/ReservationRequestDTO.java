@@ -10,6 +10,9 @@ public record ReservationRequestDTO(
     @FutureOrPresent(message = "A data não pode ser no passado")
     LocalDate date,
 
+    @NotNull(message = "id do agendamento não pode ser null")
+    Long id,
+
     @NotNull(message = "O id do usuário é obrigatório")
     Long userId
 ) {}
