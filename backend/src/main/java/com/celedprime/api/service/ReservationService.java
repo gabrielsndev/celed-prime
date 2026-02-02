@@ -7,6 +7,7 @@ import com.celedprime.api.model.Reservation;
 import com.celedprime.api.model.User;
 import com.celedprime.api.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
+import com.celedprime.api.exception.BusinessException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class ReservationService {
     public ReservationResponseDTO create(ReservationRequestDTO request) {
         LocalDate date = request.date();
         if(checkAvailability(date)) {
-            throw new RuntimeException("Há agendamento no dia selecionado");
+            throw new BusinessExexeption("Há agendamento no dia selecionado");
         }
 
         User user = userService.findEntityById(request.userId());

@@ -8,6 +8,8 @@ import com.celedprime.api.model.User;
 import com.celedprime.api.model.enums.UserRole;
 import com.celedprime.api.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import com.celedprime.api.exception.BusinessException;
+import com.celedprime.api.exception.ResourceNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,7 @@ public class UserService {
     public UserResponseDTO create(UserRegistrationDTO userDTO) {
 
         if(repository.findByEmail(userDTO.email()).isPresent()) {
-            throw new RuntimeException("Email já cadastrado!");
+            throw new BusinessException("Email já cadastrado!");
         }
 
         User newUser = UserMapper.toEntity(userDTO);
@@ -36,10 +38,10 @@ public class UserService {
 
     public UserResponseDTO login(LoginRequestDTO userDTO) {
         User user = repository.findByEmail(userDTO.email())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
 
         if(!user.getPassword().equals(userDTO.password())) {
-            throw new RuntimeException("Senha incorreta");
+            throw new BusinessExexeption("Senha incorreta");
         }
 
         return UserMapper.toResponse(user);
@@ -50,7 +52,7 @@ public class UserService {
         Optional<User> userOptional = repository.findById(id);
 
         if (userOptional.isEmpty()) {
-            throw new RuntimeException("Usuário com ID " + id + " não foi encontrado.");
+            throw new ResourceNotFoundException("Usuário com ID " + id + " não foi encontrado.");
         }
 
         User user = userOptional.get();
@@ -62,7 +64,7 @@ public class UserService {
         Optional<User> userOptional = repository.findById(id);
 
         if (userOptional.isEmpty()) {
-            throw new RuntimeException("Usuário com ID " + id + " não foi encontrado.");
+            throw new ResourceNotFoundException("Usuário com ID " + id + " não foi encontrado.");
         }
 
         return userOptional.get();
