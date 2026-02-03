@@ -40,4 +40,10 @@ public class ReservationController {
         return ResponseEntity.ok(reservesUser);
     }
 
+    @GetMapping("/calendar")
+    public ResponseEntity<List<ReservationResponseDTO>> findByMonth(@RequestParam int month, @RequestParam int year) {
+        List<ReservationResponseDTO> response = service.findByMonth(month, year);
+        return ResponseEntity.ok(response);
+    }
+
 }

@@ -35,7 +35,7 @@ public class ReservationService {
     public ReservationResponseDTO create(ReservationRequestDTO request) {
         LocalDate date = request.date();
         if(checkAvailability(date)) {
-            throw new BusinessExexeption("Há agendamento no dia selecionado");
+            throw new BusinessException("Há agendamento no dia selecionado");
         }
 
         User user = userService.findEntityById(request.userId());
