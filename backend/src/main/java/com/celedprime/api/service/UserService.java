@@ -41,7 +41,7 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
 
         if(!user.getPassword().equals(userDTO.password())) {
-            throw new BusinessExexeption("Senha incorreta");
+            throw new BusinessException("Senha incorreta");
         }
 
         return UserMapper.toResponse(user);
