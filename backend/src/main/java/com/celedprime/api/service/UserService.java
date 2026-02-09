@@ -8,8 +8,8 @@ import com.celedprime.api.model.User;
 import com.celedprime.api.model.enums.UserRole;
 import com.celedprime.api.repository.UserRepository;
 import org.springframework.stereotype.Service;
-import com.celedprime.api.exception.BusinessException;
-import com.celedprime.api.exception.ResourceNotFoundException;
+import com.celedprime.api.infra.exception.BusinessException;
+import com.celedprime.api.infra.exception.ResourceNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;

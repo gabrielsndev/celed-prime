@@ -1,4 +1,4 @@
-package com.celedprime.api.exception;
+package com.celedprime.api.infra.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
