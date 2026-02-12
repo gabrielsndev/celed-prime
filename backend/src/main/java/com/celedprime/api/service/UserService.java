@@ -7,6 +7,8 @@ import com.celedprime.api.mapper.UserMapper;
 import com.celedprime.api.model.User;
 import com.celedprime.api.model.enums.UserRole;
 import com.celedprime.api.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.celedprime.api.infra.exception.BusinessException;
 import com.celedprime.api.infra.exception.ResourceNotFoundException;
@@ -19,9 +21,11 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository repository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository repository) {
+    public UserService(UserRepository repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public UserResponseDTO create(UserRegistrationDTO userDTO) {
@@ -30,7 +34,10 @@ public class UserService {
             throw new BusinessException("Email já cadastrado!");
         }
 
+        String encryptedPassword = passwordEncoder.encode(userDTO.password());
+
         User newUser = UserMapper.toEntity(userDTO);
+        newUser.setPassword(encryptedPassword);
         User userSaved = repository.save(newUser);
 
         return UserMapper.toResponse(userSaved);
@@ -40,7 +47,7 @@ public class UserService {
         User user = repository.findByEmail(userDTO.email())
                 .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
 
-        if(!user.getPassword().equals(userDTO.password())) {
+        if(!passwordEncoder.matches(userDTO.password(), user.getPassword())) {
             throw new BusinessException("Senha incorreta");
         }
 
