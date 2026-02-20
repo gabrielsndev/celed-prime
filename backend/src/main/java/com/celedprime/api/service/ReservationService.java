@@ -32,13 +32,13 @@ public class ReservationService {
         return reservation.isPresent();
     }
 
-    public ReservationResponseDTO create(ReservationRequestDTO request) {
+    public ReservationResponseDTO create(ReservationRequestDTO request, Long userId) {
         LocalDate date = request.date();
         if(checkAvailability(date)) {
             throw new BusinessException("Há agendamento no dia selecionado");
         }
 
-        User user = userService.findEntityById(request.userId());
+        User user = userService.findEntityById(userId);
         Reservation reserve = ReservationMapper.toEntity(request, user);
 
         this.repository.save(reserve);
