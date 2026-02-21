@@ -29,7 +29,7 @@ public class ReservationService {
 
     public boolean checkAvailability(LocalDate date) {
         Optional<Reservation> reservation = this.repository.findByDate(date);
-        return reservation.isPresent();
+        return reservation.isPresent() && reservation.get().getStatus() != ReservationStatus.CANCELED;
     }
 
     public ReservationResponseDTO create(ReservationRequestDTO request, Long userId) {
