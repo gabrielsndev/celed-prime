@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -44,10 +45,12 @@ public class ReservationController {
         return ResponseEntity.ok(reservesUser);
     }
 
-    @GetMapping("/calendar")
-    public ResponseEntity<List<ReservationResponseDTO>> findByMonth(@RequestParam int month, @RequestParam int year) {
-        List<ReservationResponseDTO> response = service.findByMonth(month, year);
-        return ResponseEntity.ok(response);
+    @GetMapping("/availability")
+    public ResponseEntity<List<LocalDate>> getPublicAvailability(
+            @RequestParam(defaultValue = "4") int months
+        ) {
+        List<LocalDate> dates = service.getAvailabilityRange(months);
+        return ResponseEntity.ok(dates);
     }
 
 }

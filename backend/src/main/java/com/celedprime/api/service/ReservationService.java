@@ -76,8 +76,23 @@ public class ReservationService {
         List<ReservationResponseDTO> response = new ArrayList<>();
 
         for(Reservation reserve: reservations) {
-            response.add(ReservationMapper.toResponse(reserve));
+            if(reserve.getStatus() != ReservationStatus.CANCELED) {
+                response.add(ReservationMapper.toResponse(reserve));
+            }
         }
         return response;
+    }
+
+    public List<LocalDate> getAvailabilityRange(int monthsAhead) {
+        int limit = Math.min(monthsAhead, 12);
+
+        LocalDate start = LocalDate.now();
+        LocalDate end = start.plusMonths(limit);
+
+        return repository.findAllByDateBetween(start, end)
+                .stream()
+                .map(Reservation::getDate)
+                .distinct()
+                .toList();
     }
 }
