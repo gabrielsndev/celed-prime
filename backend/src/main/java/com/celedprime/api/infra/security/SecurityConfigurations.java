@@ -32,6 +32,9 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/reserve/availability").permitAll()
 
+                        .requestMatchers(HttpMethod.GET, "/reserve/my").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/reserve/create").hasAnyRole("ADMIN", "USER")
+
                         .requestMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/reserve").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/reserve/admin/**").hasRole("ADMIN")

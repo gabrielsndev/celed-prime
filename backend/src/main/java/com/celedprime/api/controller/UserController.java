@@ -22,18 +22,18 @@ public class UserController {
         this.service = servico;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<UserResponseDTO> register(@RequestBody @Valid UserRegistrationDTO request, UriComponentsBuilder uriBuilder) {
-        UserResponseDTO response = this.service.create(request);
-        URI uri = uriBuilder.path("/users/{id}").buildAndExpand(response.id()).toUri();
-        return ResponseEntity.created(uri).body(response);
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<UserResponseDTO> login(@RequestBody @Valid LoginRequestDTO request) {
-        UserResponseDTO user = this.service.login(request);
-        return ResponseEntity.ok(user);
-    }
+//    @PostMapping("/register")
+//    public ResponseEntity<UserResponseDTO> register(@RequestBody @Valid UserRegistrationDTO request, UriComponentsBuilder uriBuilder) {
+//        UserResponseDTO response = this.service.create(request);
+//        URI uri = uriBuilder.path("/users/{id}").buildAndExpand(response.id()).toUri();
+//        return ResponseEntity.created(uri).body(response);
+//    }
+//
+//    @PostMapping("/login")
+//    public ResponseEntity<UserResponseDTO> login(@RequestBody @Valid LoginRequestDTO request) {
+//        UserResponseDTO user = this.service.login(request);
+//        return ResponseEntity.ok(user);
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDTO> findById(@PathVariable Long id) {
