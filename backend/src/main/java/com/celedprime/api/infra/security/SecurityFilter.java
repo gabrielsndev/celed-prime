@@ -33,10 +33,10 @@ public class SecurityFilter extends OncePerRequestFilter {
 
             if (decodedJWT != null) {
                 String login = decodedJWT.getSubject();
-                var user = userRepository.findByEmail(login)
-                        .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-                var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                userRepository.findByEmail(login).ifPresent(user -> {
+                    var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                });
             }
         }
         filterChain.doFilter(request, response);
