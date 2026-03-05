@@ -17,8 +17,5 @@ public record UserRegistrationDTO(
 
     @NotBlank(message = "O telefone é obrigatório")
     @Pattern(regexp = "^\\([1-9]{2}\\) [9]{0,1}[6-9]{1}[0-9]{3}\\-[0-9]{4}$")
-    String phone,
-
-    @NotNull(message = "O nível de acesso é obrigatório")
-    UserRole role
+    String phone
 ) {}
