@@ -1,10 +1,9 @@
 :root {
-  --cp-blue: #2DBBEB;
-  --cp-gold: #EBA92D;
-  --cp-orange: #CC5E27;
-  --cp-bg: #F5F7FA;
-  --cp-card: #FFFFFF;
-  --cp-text: #333333;
+  --prime-blue: #2DBBEB;
+  --prime-gold: #EBA92D;
+  --prime-orange: #CC5E27;
+  --color-bg: #F5F7FA;
+  --color-text: #333333;
 }
 
 body {
@@ -13,12 +12,4 @@ body {
   background-color: var(--cp-bg);
   font-family: 'Inter', sans-serif;
   color: var(--cp-text);
-}
-
-.cp-card {
-  background: var(--cp-card);
-  border-radius: 24px; 
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  margin-bottom: 16px;
 }
