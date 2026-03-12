@@ -1,0 +1,80 @@
+.reserves {
+    position: relative;
+    width: 80%;
+    max-width: 400px; 
+    margin: 20px auto;
+    height: 220px;
+    border-radius: 20px;
+    padding: 24px;
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.6)), url('/images/piscina.jpg') center/cover no-repeat;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+    align-items: flex-start;
+    box-shadow: var(--shadow);
+    color: var(--white);
+    font-family: 'Arial', sans-serif;
+
+  .exclusive {
+        background-color: #EBA92D;
+        font-size: 0.65rem;
+        font-weight: 800;
+        padding: 4px 10px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        width: fit-content;
+  }
+
+    h2{
+        font-family: 'Bodoni Moda', serif;
+        font-size: 1.8rem;
+        margin: 0 0 8px 0;
+        line-height: 1.1;
+        font-weight: 700;
+        color: var(--white);
+  }
+
+  > p:last-of-type {
+        font-size: 0.9rem;
+        color: var(--white);
+        margin-bottom: 10px;
+        opacity: 0.9;
+  }
+
+  .login-buttonreserves {
+        width: 100%;
+        background-color: var(--prime-blue);
+        border: none;
+        border-radius: 12px;
+        padding: 6px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    p {
+        margin: 0;
+        color: var(--color-bg);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bold;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--prime-blue), black 10%);
+    }
+  }
+
+  &:hover {
+        transform: scale(1.02); 
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+}
