@@ -1,0 +1,52 @@
+.calendar-card {
+    max-width: 320px;
+    min-height: 320px;
+    height: auto;
+    max-height: 360px;
+    margin: 10px auto;
+    border-radius: 16px;
+    padding-bottom: 10px;
+
+    ::ng-deep {
+
+        .special-date .mat-calendar-body-cell-content {
+            background-color: var(--prime-gold) !important;
+            color: white !important;
+            border-radius: 50% !important; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none !important;
+        }
+
+        .mat-calendar{
+            font-family: 'Bodoni Moda', serif;
+            height: 350px;
+        }
+
+        .mat-calendar-header {
+            padding: 0px 8px;
+            margin-top: -5px;
+        }
+
+        .mat-calendar-body-label {
+            display: none !important;
+        }
+
+        .mat-calendar-body-cell-content {
+            width: 32px !important;
+            height: 32px !important;
+            line-height: 32px !important;
+            font-size: 13px;
+        }
+
+        .mat-calendar-content {
+            padding: 0 8px 8px 8px !important;
+        }
+
+        .mat-calendar-previous-button, .mat-calendar-next-button {
+            transform: scale(0.8);
+        }
+    }
+
+}
