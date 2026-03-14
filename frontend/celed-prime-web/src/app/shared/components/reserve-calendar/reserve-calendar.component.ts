@@ -9,15 +9,12 @@ import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 
 @Component({
   selector: 'cp-reserve-calendar',
+  standalone:true,
   imports: [
     CommonModule,
     MatCardModule,
     MatDatepickerModule,
     MatButtonModule,
-  ],
-  providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
-    provideNativeDateAdapter()
   ],
   templateUrl: './reserve-calendar.component.html',
   styleUrl: './reserve-calendar.component.scss',
