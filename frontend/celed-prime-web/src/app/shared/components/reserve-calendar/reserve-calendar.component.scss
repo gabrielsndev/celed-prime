@@ -1,27 +1,31 @@
 .calendar-card {
     max-width: 320px;
+    width: 100%;
     min-height: 320px;
     height: auto;
-    max-height: 360px;
+    max-height: 400px;
     margin: 10px auto;
     border-radius: 16px;
-    padding-bottom: 10px;
 
     ::ng-deep {
-
+        ::ng-deep {
         .special-date .mat-calendar-body-cell-content {
             background-color: var(--prime-gold) !important;
             color: white !important;
-            border-radius: 50% !important; 
+            border-radius: 50% !important;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: none !important;
+            margin: auto; 
+        }
         }
 
         .mat-calendar{
             font-family: 'Bodoni Moda', serif;
-            height: 350px;
+            height: auto !important;
+            min-height: 360px;
         }
 
         .mat-calendar-header {
@@ -29,19 +33,31 @@
             margin-top: -5px;
         }
 
+
         .mat-calendar-body-label {
-            display: none !important;
+            color: transparent !important;
+            font-size: 0 !important;
+            line-height: 0 !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            padding: 0 !important;
         }
 
+
+        
+
         .mat-calendar-body-cell-content {
-            width: 32px !important;
-            height: 32px !important;
-            line-height: 32px !important;
             font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            width: 32px;
+            height: 32px;
         }
 
         .mat-calendar-content {
-            padding: 0 8px 8px 8px !important;
+            padding: 2px 0px;
         }
 
         .mat-calendar-previous-button, .mat-calendar-next-button {
