@@ -154,3 +154,81 @@
         .material-symbols-outlined { color: #CC5E27; }
     }
 }
+
+.availability-section {
+  padding: 60px 24px;
+  background: #fff;
+
+  .content-left {
+    text-align: left;
+    margin-bottom: 40px; 
+
+    .badge {
+      display: block;
+      color: var(--prime-gold);
+      font-size: 13px;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-size: 32px; 
+      line-height: 1.2;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+      font-family: 'Bodoni Moda', serif;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #777;
+      margin-bottom: 30px;
+    }
+  }
+
+  .status-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Bodoni Moda', serif;
+      font-size: 16px;
+    }
+
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      display: inline-block;
+
+      &.occupied {
+        background-color: var(--prime-gold);
+      }
+
+      &.available {
+        border: 1px solid #ccc;
+        background-color: #fff;
+      }
+    }
+  }
+
+  .cta-button {
+    width: 100%; // No mobile fica melhor ocupando tudo
+    max-width: 250px;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 18px;
+    border-radius: 12px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+  }
+
+}
