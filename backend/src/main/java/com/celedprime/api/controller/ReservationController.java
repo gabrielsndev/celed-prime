@@ -5,6 +5,10 @@ import com.celedprime.api.dto.ReservationResponseDTO;
 import com.celedprime.api.model.User;
 import com.celedprime.api.service.ReservationService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -40,9 +44,9 @@ public class ReservationController {
     }
 
     @GetMapping("/my")
-    public ResponseEntity<List<ReservationResponseDTO>> listMyReservations(@AuthenticationPrincipal User user) {
-        List<ReservationResponseDTO> reservesUser = this.service.findAllByUser(user.getId());
-        return ResponseEntity.ok(reservesUser);
+    public ResponseEntity<Page<ReservationResponseDTO>> listMyReservations(@AuthenticationPrincipal User user,
+                       @PageableDefault(size = 10, sort = "date", direction = Sort.Direction.ASC)Pageable pageable) {
+        return ResponseEntity.ok(this.service.findAllByUser(user.getId()));
     }
 
     @GetMapping("/availability")

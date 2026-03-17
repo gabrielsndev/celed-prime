@@ -9,6 +9,8 @@ import com.celedprime.api.model.enums.ReservationStatus;
 import com.celedprime.api.repository.ReservationRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.celedprime.api.infra.exception.BusinessException;
 
@@ -45,17 +47,11 @@ public class ReservationService {
         return ReservationMapper.toResponse(reserve);
     }
 
-    public List<ReservationResponseDTO> findAllByUser(Long userId) {
+    public Page<ReservationResponseDTO> findAllByUser(Long userId, Pageable pageable) {
 
         User user = userService.findEntityById(userId);
-        List<Reservation> reservations = this.repository.findByUser(user);
-        List<ReservationResponseDTO> reserves = new ArrayList<>();
-
-        for(Reservation reserve: reservations) {
-            reserves.add(ReservationMapper.toResponse(reserve));
-        }
-
-        return reserves;
+        Page<Reservation> reservations = this.repository.findByUser(user, pageable);
+        return reservations.map(ReservationMapper::toResponse);
     }
 
     @Transactional

@@ -2,6 +2,8 @@ package com.celedprime.api.repository;
 
 import com.celedprime.api.model.Reservation;
 import com.celedprime.api.model.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +16,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 
     Optional<Reservation> findByDate(LocalDate date);
 
-    List<Reservation> findByUser(User user);
+    Page<Reservation> findByUser(User user, Pageable pageable);
 
     List<Reservation> findByDateBetween(LocalDate startDate, LocalDate endDate);
 
