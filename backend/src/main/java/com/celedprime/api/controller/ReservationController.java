@@ -46,7 +46,7 @@ public class ReservationController {
     @GetMapping("/my")
     public ResponseEntity<Page<ReservationResponseDTO>> listMyReservations(@AuthenticationPrincipal User user,
                        @PageableDefault(size = 10, sort = "date", direction = Sort.Direction.ASC)Pageable pageable) {
-        return ResponseEntity.ok(this.service.findAllByUser(user.getId()));
+        return ResponseEntity.ok(this.service.findAllByUser(user.getId(), pageable));
     }
 
     @GetMapping("/availability")
