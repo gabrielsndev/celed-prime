@@ -1,39 +1,88 @@
-.header-container {
+.header-prime {
+  position: fixed;
+  top: 0;
+  z-index: 1100; 
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 20px;
-  background-color: var(--color-bg);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 12px 6%; 
+  
+  background: rgba(255, 255, 255, 0.85); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
 
   .logo-area {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    cursor: pointer;
 
     .logo-img {
-      height: 50px;
+      height: 38px;
       width: auto;
+      object-fit: contain;
     }
 
     .title {
-        font-family:'Bodoni Moda', serif;
-        font-size: 1.25rem;
-        font-weight: 700;
-        text-shadow: 0.5px 0.8px var(--color-text);
-        color: var(--prime-blue);
-        margin: 0;
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0;
+      letter-spacing: -0.5px;
+     
     }
   }
 
-  .material-symbols-outlined {
-    color: var(--color-text);
-    /* background-color: var(--prime-blue); */
-    cursor: pointer;
-    font-size: 28px;
+  .nav-actions {
+    .btn-login-header {
+      background: transparent;
+      border: 1.5px solid #1a1a1a; 
+      color: #1a1a1a;
+      padding: 8px 22px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 2px; 
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &:hover {
+        background: #1a1a1a;
+        color: #fff;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      &:active {
+        transform: scale(0.96);
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .header-prime {
+    padding: 10px 4%;
     
-    &:hover {
-      color: var(--prime-gold);
+    .logo-area {
+      .title {
+        font-size: 1rem; 
+      }
+      .logo-img {
+        height: 32px;
+      }
+    }
+
+    .btn-login-header {
+      padding: 6px 16px;
+      font-size: 0.65rem;
+      letter-spacing: 1.2px;
     }
   }
 }
