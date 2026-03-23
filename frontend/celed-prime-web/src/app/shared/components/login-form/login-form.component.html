@@ -1,1 +1,29 @@
-<p>login-form works!</p>
+<div class="prime-login-card">
+  
+  <a href="#" class="link-voltar" (click)="voltarPortal(); $event.preventDefault()">
+    <span class="material-symbols-outlined">west</span>
+    Voltar
+  </a>
+
+  <h1 class="titulo-bodoni">Acesse sua Conta Prime</h1>
+
+  <form class="formulario-prime">
+    
+    <div class="input-group">
+      <input type="email" id="email" placeholder="E-mail Prime" class="prime-input">
+    </div>
+
+    <div class="input-group">
+      <input type="password" id="senha" placeholder="Senha" class="prime-input">
+    </div>
+
+    <button type="submit" class="btn-prime-entrar">ENTRAR</button>
+
+    <div class="links-footer">
+      <a href="#" class="link-secundario">Esqueci minha senha</a>
+      <a href="#" class="link-secundario destaque">Não sou membro? Crie sua conta</a>
+    </div>
+
+  </form>
+
+</div>

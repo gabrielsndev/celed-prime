@@ -1,0 +1,135 @@
+.tela-autenticacao {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(var(--black-overlay), var(--black-overlay)), 
+              url('/images/piscina.jpg') center/cover no-repeat;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.conteudo-central {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: center;
+}
+
+.portal-opcoes {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .card-opcao {
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
+    padding: 40px 30px;
+    background: var(--white-glass);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    text-align: center;
+    color: var(--white);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    .icone-area {
+      margin-bottom: 20px;
+      color: var(--white);
+      .material-symbols-outlined { font-size: 48px; }
+    }
+
+    .titulo-bodoni {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .descricao {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .btn-acao-card {
+      background: var(--white);
+      color: var(--color-text);
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    &:hover {
+      transform: translateY(-12px);
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+      .btn-acao-card {
+        background: var(--prime-gold);
+        color: var(--white);
+      }
+    }
+
+    &.destaque {
+      border: 1.5px solid rgba(235, 169, 45, 0.4);
+      
+      .icone-area { color: var(--prime-gold); }
+
+      &:hover {
+        border-color: var(--prime-gold);
+        box-shadow: 0 20px 40px rgba(235, 169, 45, 0.15);
+      }
+    }
+  }
+}
+
+.area-formulario {
+  width: 100%;
+  max-width: 500px;
+  background: transparent;
+  padding: 20px;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  animation: surgirSuave 0.5s ease;
+
+  .btn-voltar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: var(--color-text);
+    opacity: 0.7;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 25px;
+    transition: 0.3s;
+
+    &:hover {
+      opacity: 1;
+      transform: translateX(-5px);
+      color: var(--prime-blue);
+    }
+  }
+}
+
+@keyframes surgirSuave {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .portal-opcoes { flex-direction: column; align-items: center; }
+}

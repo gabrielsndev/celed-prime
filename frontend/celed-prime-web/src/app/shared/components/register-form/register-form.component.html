@@ -1,1 +1,35 @@
-<p>register-form works!</p>
+<div class="prime-register-card">
+  
+  <a class="link-voltar" (click)="voltarPortal(); $event.preventDefault()">
+    <span class="material-symbols-outlined">west</span>
+    Voltar
+  </a>
+
+  <h1 class="titulo-bodoni">Crie sua Experiência Prime</h1>
+
+  <form class="formulario-prime">
+    
+    <div class="input-group">
+      <input type="text" placeholder="Nome Completo" class="prime-input">
+    </div>
+
+    <div class="input-group">
+      <input type="email" placeholder="E-mail Prime" class="prime-input">
+    </div>
+
+    <div class="input-group">
+      <input type="tel" placeholder="Telefone (00) 90000-0000" class="prime-input">
+    </div>
+
+    <div class="input-group">
+      <input type="password" placeholder="Senha (mín. 6 caracteres)" class="prime-input">
+    </div>
+
+    <button type="submit" class="btn-prime-confirmar">CRIAR CONTA</button>
+
+    <div class="links-footer">
+      <a (click)="voltarPortal()" class="link-secundario">Já possui uma conta? Entre aqui</a>
+    </div>
+
+  </form>
+</div>

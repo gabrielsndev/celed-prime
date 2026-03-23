@@ -1,1 +1,42 @@
-<p>login works!</p>
+<div class="tela-autenticacao">
+  
+  <div class="conteudo-central">
+
+    @if (viewMode === 'portal') {
+      <div class="portal-opcoes">
+        
+        <div class="card-opcao" (click)="setView('login')">
+          <div class="icone-area">
+            <span class="material-symbols-outlined">login</span>
+          </div>
+          <h2 class="titulo-bodoni">Já sou membro</h2>
+          <p class="descricao">Acesse sua conta Prime para gerenciar reservas.</p>
+          <button class="btn-acao-card">ENTRAR</button>
+        </div>
+
+        <div class="card-opcao destaque" (click)="setView('register')">
+          <div class="icone-area">
+            <span class="material-symbols-outlined">workspace_premium</span>
+          </div>
+          <h2 class="titulo-bodoni">Quero ser Prime</h2>
+          <p class="descricao">Crie sua conta exclusiva e tenha benefícios.</p>
+          <button class="btn-acao-card">CADASTRAR</button>
+        </div>
+
+      </div>
+    }
+
+    @if (viewMode === 'login') {
+      <div class="area-formulario">
+        <cp-login-form (aoVoltar)="goBack()"></cp-login-form>
+      </div>
+    }
+
+    @if (viewMode === 'register') {
+      <div class="area-formulario">        
+        <cp-register-form (aoVoltar)="goBack()"></cp-register-form>
+      </div>
+    }
+
+  </div>
+</div>

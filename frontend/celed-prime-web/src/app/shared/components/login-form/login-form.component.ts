@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'cp-login-form',
@@ -7,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './login-form.component.scss',
 })
 export class LoginFormComponent {
+
+  @Output() aoVoltar = new EventEmitter<void>();
+  
+  voltarPortal() {
+    this.aoVoltar.emit();
+  }
 
 }

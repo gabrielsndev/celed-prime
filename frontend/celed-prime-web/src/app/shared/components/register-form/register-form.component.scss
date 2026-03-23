@@ -1,0 +1,101 @@
+.prime-register-card {
+  background: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  padding: 40px; // Reduzi um pouco o padding para os 4 campos caberem melhor
+  color: var(--white);
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  flex-direction: column;
+  animation: surgirCard 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  .link-voltar {
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover { color: var(--white); transform: translateX(-3px); }
+  }
+
+  .titulo-bodoni {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    line-height: 1.1;
+  }
+
+  .formulario-prime {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; // Gap menor entre os 4 campos para não esticar muito o card
+
+    .prime-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05); 
+      border: 1px solid rgba(255, 255, 255, 0.1); 
+      border-radius: 12px;
+      padding: 14px;
+      color: var(--white);
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+
+      &::placeholder { color: rgba(255, 255, 255, 0.5); }
+      &:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--prime-gold); // Foco dourado no cadastro
+      }
+    }
+
+    .btn-prime-confirmar {
+      background: var(--prime-gold);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      padding: 16px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(235, 169, 45, 0.3);
+        filter: brightness(1.1);
+      }
+    }
+
+    .links-footer {
+      margin-top: 15px;
+      text-align: center;
+      .link-secundario {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.85rem;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover { color: var(--prime-blue); text-decoration: underline; }
+      }
+    }
+  }
+}
+
+@keyframes surgirCard {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
