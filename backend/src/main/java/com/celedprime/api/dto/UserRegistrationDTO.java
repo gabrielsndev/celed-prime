@@ -16,6 +16,6 @@ public record UserRegistrationDTO(
     String password,
 
     @NotBlank(message = "O telefone é obrigatório")
-    @Pattern(regexp = "^\\([1-9]{2}\\) [9]{0,1}[6-9]{1}[0-9]{3}\\-[0-9]{4}$")
+    @Pattern(regexp = "^[0-9]{10,11}$", message = "O telefone deve conter apenas números (10 ou 11 dígitos)")
     String phone
 ) {}

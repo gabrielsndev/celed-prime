@@ -7,25 +7,25 @@
 
   <h1 class="titulo-bodoni">Crie sua Experiência Prime</h1>
 
-  <form class="formulario-prime">
+  <form class="formulario-prime" [formGroup]="registerForm" (ngSubmit)="submitForm()">
     
     <div class="input-group">
-      <input type="text" placeholder="Nome Completo" class="prime-input">
+      <input type="text" placeholder="Nome Completo" class="prime-input" formControlName="name">
     </div>
 
     <div class="input-group">
-      <input type="email" placeholder="E-mail Prime" class="prime-input">
+      <input type="email" placeholder="E-mail Prime" class="prime-input" formControlName="email">
     </div>
 
     <div class="input-group">
-      <input type="tel" placeholder="Telefone (00) 90000-0000" class="prime-input">
+      <input type="tel" placeholder="Telefone (apenas números)" class="prime-input" formControlName="phone" (input)="limparTelefone()">
     </div>
 
     <div class="input-group">
-      <input type="password" placeholder="Senha (mín. 6 caracteres)" class="prime-input">
+      <input type="password" placeholder="Senha (mín. 6 caracteres)" class="prime-input" formControlName="password">
     </div>
 
-    <button type="submit" class="btn-prime-confirmar">CRIAR CONTA</button>
+    <button type="submit" class="btn-prime-confirmar" [disabled]="registerForm.invalid">CRIAR CONTA</button>
 
     <div class="links-footer">
       <a (click)="voltarPortal()" class="link-secundario">Já possui uma conta? Entre aqui</a>
