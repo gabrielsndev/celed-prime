@@ -74,6 +74,26 @@
       margin-top: 10px;
       transition: all 0.3s ease;
 
+      &:disabled {
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.3);     
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        cursor: not-allowed;                  
+        transform: none;                      
+        box-shadow: none;                     
+        filter: grayscale(1);                 
+    
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+          transform: none;
+          box-shadow: none;
+          filter: grayscale(1);
+        }
+      }
+
+
+
+
       &:hover {
         transform: translateY(-2px);
         box-shadow: 0 10px 20px rgba(235, 169, 45, 0.3);
