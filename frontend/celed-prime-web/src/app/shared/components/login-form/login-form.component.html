@@ -7,14 +7,19 @@
 
   <h1 class="titulo-bodoni">Acesse sua Conta Prime</h1>
 
-  <form class="formulario-prime">
+  <form class="formulario-prime" [formGroup]="registerForm" (ngSubmit)="submitForm()">
     
     <div class="input-group">
-      <input type="email" id="email" placeholder="E-mail Prime" class="prime-input">
+      <input type="email" id="email" placeholder="E-mail Prime" class="prime-input" formControlName="email">
+      @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+        <span class="erro-mensagem">
+          {{ getErrorMessage ('email') }}
+        </span>
+      }
     </div>
 
     <div class="input-group">
-      <input type="password" id="senha" placeholder="Senha" class="prime-input">
+      <input type="password" id="senha" placeholder="Senha" class="prime-input" formControlName="password">
     </div>
 
     <button type="submit" class="btn-prime-entrar" [disabled]="registerForm.invalid">ENTRAR</button>
