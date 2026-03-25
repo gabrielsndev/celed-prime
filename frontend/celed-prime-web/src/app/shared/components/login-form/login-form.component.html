@@ -17,7 +17,7 @@
       <input type="password" id="senha" placeholder="Senha" class="prime-input">
     </div>
 
-    <button type="submit" class="btn-prime-entrar">ENTRAR</button>
+    <button type="submit" class="btn-prime-entrar" [disabled]="registerForm.invalid">ENTRAR</button>
 
     <div class="links-footer">
       <a href="#" class="link-secundario">Esqueci minha senha</a>
