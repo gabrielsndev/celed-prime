@@ -1,4 +1,21 @@
 .prime-register-card {
+
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+  
+    .erro-mensagem {
+      color: var(--error);
+      font-size: 0.85 rem;
+      font-weight: 500;
+      margin-left: 10px;
+      animation: entrarSuave 0.3s ease;
+    }
+  }
+
   background: rgba(255, 255, 255, 0.1); 
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
