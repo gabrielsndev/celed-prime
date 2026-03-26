@@ -1,10 +1,9 @@
 package com.celedprime.api.controller;
 
-import com.celedprime.api.dto.LoginRequestDTO;
-import com.celedprime.api.dto.LoginResponseDTO;
-import com.celedprime.api.dto.UserRegistrationDTO;
+import com.celedprime.api.dto.*;
 import com.celedprime.api.infra.security.TokenService;
 import com.celedprime.api.model.User;
+import com.celedprime.api.service.PasswordResetService;
 import com.celedprime.api.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +26,8 @@ public class AuthenticationController {
     private TokenService tokenService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private PasswordResetService passwordResetService;
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid UserRegistrationDTO data, UriComponentsBuilder uriBuilder) {
@@ -45,4 +46,17 @@ public class AuthenticationController {
 
         return ResponseEntity.ok(new LoginResponseDTO(token));
     }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<Void> forgotPassword(@RequestBody @Valid ForgotPasswordRequestDTO request){
+        this.passwordResetService.generateAndSendResetCode(request.email());
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<Void> resetPassword(@RequestBody @Valid ResetPasswordRequestDTO request){
+        this.passwordResetService.resetPasswordWithCode(request.code(),request.newPassword());
+        return ResponseEntity.noContent().build();
+    }
+
 }
