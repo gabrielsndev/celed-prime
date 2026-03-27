@@ -2,6 +2,8 @@ export const API_CONFIG = {
     baseUrl: "http://localhost:8080",
 
     endpoints: {
-        calendar: "/reserve/availability"
+        calendar: "/reserve/availability",
+        login: "/auth/login",
+        register: "/auth/register"
     }
 };

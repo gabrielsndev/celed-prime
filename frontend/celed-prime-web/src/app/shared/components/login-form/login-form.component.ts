@@ -22,6 +22,7 @@ export class LoginFormComponent {
     const control = this.registerForm.get(fieldName);
 
     if (control?.errors) {
+      if (control.hasError('required')) return 'Este campo é obrigatório';
       if (control.hasError('email')) return 'E-mail inválido';
       if (control.hasError('minlength')) return `Mínimo de ${control.errors['minlength'].requiredLength} caracteres`;
     }
