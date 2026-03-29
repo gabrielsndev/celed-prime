@@ -1,5 +1,8 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../../core/services/auth.service';
+import { Router } from '@angular/router';
+import { LoginRequest } from '../../../core/models/auth.model';
 
 @Component({
   selector: 'cp-login-form',
@@ -11,15 +14,19 @@ import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angula
 })
 export class LoginFormComponent {
 
-  private fb = inject(FormBuilder)
+  private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  loading = false;
 
-  registerForm = this.fb.group({
+
+  loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   })
 
   getErrorMessage(fieldName: string): string {
-    const control = this.registerForm.get(fieldName);
+    const control = this.loginForm.get(fieldName);
 
     if (control?.errors) {
       if (control.hasError('required')) return 'Este campo é obrigatório';
@@ -30,10 +37,23 @@ export class LoginFormComponent {
   }
 
   submitForm(): void {
-    if (this.registerForm.valid) {
-      console.log('Formulário de registro válido:', this.registerForm.value);
-    } else {
-      console.log('Formulário de registro inválido');
+    if (this.loginForm.valid) {
+      this.loading= true;
+      const dados = this.loginForm.getRawValue() as LoginRequest;
+
+      this.authService.login(dados).subscribe({
+        next: (response) => {
+          localStorage.setItem('cp_token', response.token);
+          console.log('Bem-vindo ao Celed Prime!', response);
+          this.router.navigate(['/home']);
+          this.loading = false;
+        },
+        error: (err) => {
+          console.error('Erro no login:', err);
+          alert('E-mail ou senha incorretos. Tente novamente.');
+          this.loading = false;
+        }
+      });
     }
   }
 

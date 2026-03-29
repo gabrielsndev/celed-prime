@@ -1,5 +1,7 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../../core/services/auth.service';
+import { UserRegistration } from '../../../core/models/user.model';
 
 
 @Component({
@@ -13,7 +15,9 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export class RegisterFormComponent {
 
-  private fb = inject(FormBuilder)
+  private fb = inject(FormBuilder);
+  private service = inject(AuthService);
+  loading = false;
 
   registerForm = this.fb.group({
     name: ['', [Validators.required]],
@@ -31,12 +35,25 @@ export class RegisterFormComponent {
 
   submitForm(): void {
     if (this.registerForm.valid) {
-      console.log('Formulário de registro válido:', this.registerForm.value);
-    } else {
-      console.log('Formulário de registro inválido');
+      this.loading = true;
+      const novoUsuario = this.registerForm.getRawValue() as UserRegistration;
+
+      this.service.register(novoUsuario).subscribe({
+        next: (res) => {
+          console.log('Usuário Prime criado com sucesso!', res);
+          alert('Conta criada! Agora é só fazer o login.');
+          this.loading = false;
+          this.voltarPortal(); 
+        },
+        error: (err) => {
+          console.error('Erro no cadastro:', err);
+          alert('Ocorreu um erro ao criar sua conta. Verifique os dados.');
+          this.loading = false;
+        }
+      });
     }
   }
-  
+
   limparTelefone() {
     const controle = this.registerForm.get('phone');
     const valorAtual = controle?.value ?? '';
