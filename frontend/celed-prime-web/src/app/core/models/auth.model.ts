@@ -6,3 +6,10 @@ export interface LoginRequest {
 export interface LoginResponse {
     readonly token: string;
 }
+
+export interface MyJwtPayload {
+  iss: string;
+  sub: string;
+  role: string;
+  exp: number;
+}
