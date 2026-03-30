@@ -4,6 +4,7 @@ export const API_CONFIG = {
     endpoints: {
         calendar: "/reserve/availability",
         login: "/auth/login",
-        register: "/auth/register"
+        register: "/auth/register",
+        myReservations: "/reserve/my",
     }
 };

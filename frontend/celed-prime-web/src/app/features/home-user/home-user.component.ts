@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
+import { ReservationService } from '../../core/services/reservation.service';
 
 @Component({
   selector: 'cp-home-user',
@@ -9,23 +10,36 @@ import { Router } from '@angular/router';
   styleUrl: './home-user.component.scss',
 })
 export class HomeUserComponent {
-  private authService = inject(AuthService);
+
+  MESES = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
   private router = inject(Router);
+  private reservationService = inject(ReservationService);
 
 
 
   userName: string = 'Gabriel'; 
   
-  proximasReservas: any[] = [
-    { id: 1, dia: '25', mes: 'out'},
-    { id: 2, dia: '30', mes: 'set'},
-  ];
+  proximasReservas: any[] = [];
 
   ngOnInit(): void {
-    // Aqui buscaria o nome real do usuário se estiver no Token
-    // const email = this.authService.getUserEmail();
-    // this.userName = email ? email.split('@') : 'Usuário';
+    this.reservationService.getMyReservations(2).subscribe({
+      next: (response) => {
+        this.proximasReservas = response.content.map(res => {
+          const dataOriginal = new Date(res.date + 'T00:00:00');
+          return {
+            id: res.id,
+            dia: dataOriginal.getDate().toString().padStart(2, '0'),
+            mes: this.MESES[dataOriginal.getMonth()],
+            status: res.status
+          };
+        });        
+      },
+      error: (err) => {
+        console.error('Erro ao carregar reservas:', err);
+      }
+    });
   }
+
 
   verTodas() {
     this.router.navigate(['/reservas']);

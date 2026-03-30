@@ -1,18 +1,20 @@
 import { UserResponse } from "./user.model";
 
-export enum ReservationStatus {
-    COMPLETED = 'COMPLETED',
-    CONFIRMED = 'CONFIRMED',
-    CANCELED = 'CANCELED'
-}
 
 export interface ReservationRequest {
     date: string
 }
 
+export interface ReservationDTO {
+  id: number;
+  date: string; 
+  status: 'CONFIRMED' | 'PENDING' | 'CANCELED';
+  user: any; 
+}
+
 export interface ReservationResponse {
-    readonly id: number;
-    readonly date: string;
-    readonly user: UserResponse;
-    readonly status: ReservationStatus;
+  content: ReservationDTO[];
+  totalElements: number;
+  totalPages: number;
+  last: boolean;
 }
