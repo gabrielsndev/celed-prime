@@ -1,0 +1,58 @@
+<div class="user-home-wrapper">
+  <header class="welcome-section">
+    <div class="header-content">
+      <h1 class="titulo-prime">Olá, {{ userName }}</h1>
+      <p class="subtitulo">Garanta sua próxima experiência Prime com alguns cliques.</p>
+    </div>
+  </header>
+
+  <main class="dashboard-content">
+    <section class="reservas-prime-container">
+      <div class="section-header">
+        <h2>Próximas Reservas</h2>
+        <button class="btn-text-gold" (click)="verTodas()">
+          Ver todas
+          <span class="material-symbols-outlined">trending_flat</span>
+        </button>
+      </div>
+
+      <div class="reservas-list">
+        @if (proximasReservas.length > 0) {
+          @for (reserva of proximasReservas.slice(0, 2); track reserva.id) {
+            <div class="reserva-card-prime" (click)="detalhesReserva(reserva.id)">
+              <div class="date-badge-gold">
+                <span class="day">{{ reserva.dia }}</span>
+                <span class="month">{{ reserva.mes }}</span>
+              </div>
+              
+              <div class="info-content-prime">
+                <span class="status-tag-confirmed">RESERVA CONFIRMADA</span>
+              </div>
+              
+              <span class="material-symbols-outlined icon-chevron">chevron_right</span>
+            </div>
+          }
+        } @else {
+          <div class="empty-state-prime">
+            <span class="material-symbols-outlined icon-empty">calendar_month</span>
+            <p>Você ainda não tem reservas planejadas.</p>
+            <button class="btn-prime-outline" (click)="novaReserva()">Reservar Agora</button>
+          </div>
+        }
+      </div>
+    </section>
+
+    <section class="action-invitation">
+        <div class="invitation-content">
+            <span class="detail-line"></span>
+            <h3>Pronto para sua próxima experiência?</h3>
+            <p>O seu espaço exlusivo, o Celed Prime está à sua espera.</p>
+            <button class="btn-prime-gold-large" (click)="novaReserva()">
+                RESERVAR AGORA
+                <span class="material-symbols-outlined">calendar_add_on</span>
+            </button>
+        </div>
+    </section>
+
+  </main>
+</div>
